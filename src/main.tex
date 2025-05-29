@@ -1,0 +1,501 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[landscape,margin=1cm]{geometry}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{shadows}
+
+% \usepackage{keystroke}
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{graphicx,wrapfig}
+
+% colour themes to come. KnitR?
+
+%-------------------------
+
+
+\title{ }
+% \author{Fidel González Leiva}
+\date{}
+\input{cheatsheet-template.tex}
+
+
+\makeatletter
+\newcommand{\globalcolor}[1]{%
+  \color{#1}\global\let\default@color\current@color
+}
+\makeatother
+
+\AddToHook{shipout/background}{%
+    \put (0in,-\paperheight){\includegraphics[width=\paperwidth,height=\paperheight]{images/Focal-Fossa_1.png}}%
+}
+
+\AtBeginDocument{\globalcolor{white}}
+%--------------------------------------------------------------------------------
+
+\begin{document}
+% \pagecolor{bg}
+
+\small
+\begin{multicols}{3}
+
+% \maketitle 
+\thispagestyle{empty}
+\scriptsize
+% \tableofcontents
+
+
+\section{Mandatory tools}
+
+
+
+
+\begin{textbox}{\href{https://ohmyz.sh/}{oh-my-zsh}}
+
+\underline{\textbf{Plugins}}
+\begin{itemize}
+    \item \textbf{git} (autocompletion and explanation for git commands)
+    \item \textbf{sudo} ( \keystroke{esc} + \keystroke{esc} toggle sudo before command)
+    \item \textbf{docker} (autocompletion for docker)
+    \item \href{https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins}{Search for plugins for the tools you use the most} 
+\end{itemize}
+
+\underline{\textbf{Aliases}}
+\begin{itemize}
+    \item \textbf{$\cdot\cdot(\cdot\cdot)$ } (each dot appending '$\cdot\cdot$' means one folder before)
+    \item \textbf{take <dir>} (mkdir <dir> ; cd <dir>)
+    \item \textbf{d, 1, 2, 3...} (d shows lastest directories visited, each number moves to corresponding dir)
+    \item \textbf{l} = ls -lah (list \textbf{l}ong, \textbf{a}ll and for \textbf{h}umans)
+\end{itemize}
+
+\green{Pros}
+
+Very powerful \textbf{autocompletion} (\underline{case insensitive},  \underline{navigate} through autocompletion suggestions with \underline{arrow keys})\\
+
+With \keystroke{tab} you can move/write args/see cmd's options quickly and easily\\
+
+Start writing a cmd and press \keystroke{$\uparrow$} \keystroke{$\downarrow$} to navigate through latest cmds matching the written beginning \\
+
+\href{https://github.com/romkatv/powerlevel10k}{Themes are really useful}. Provide information as: git status of current dir (if working directory is a repository), information about last execution return code, information of the time elapsed since command execution until termination, etc. 
+
+\red{Cons}
+
+Special matching char '$*$' does not work by default. (Fix it with \textit{echo 'setopt +o nomatch' >> \textasciitilde/.zshrc})\\
+
+Special attention when doing \textit{\textbf{source} any-file\textbf{.bash}} files. Now will be \textit{\textbf{source} any-file\textbf{.zsh}}. (Attention using ROS)\\
+
+
+Some scripts won't work with zsh, if strange errors occurs, just try using bash.
+
+\begin{wrapfigure}{rt}{0.2\textwidth}
+\vspace{-6mm}\includegraphics[width=0.2\textwidth]{images/omz.png}
+\end{wrapfigure}
+
+\yellow{Tips}
+Burn your \keystroke{tab} key! 
+
+\end{textbox}
+
+
+
+
+\begin{textbox}{\href{https://github.com/junegunn/fzf}{fzf}}
+\begin{wrapfigure}{rt}{0.15\textwidth}
+ \vspace{-4mm}\includegraphics[width=0.15\textwidth]{images/fzf.png}
+\end{wrapfigure}
+
+\keystroke{ctrl} $+$ \keystroke{r} $\rightarrow$ fuzzy finder for used cmds 
+
+\keystroke{ctrl} $+$ \keystroke{t} $\rightarrow$ fuzzy finder for files and dirs 
+\end{textbox}
+
+
+\centering
+\vspace{6pt}
+by:\Large \color{greenbash}lotape6 \scriptsize
+
+\raggedright
+
+\vfill\null
+\columnbreak
+
+\centering
+
+\huge \color{greenbash}Linux {\color{blues}stuff} \color{white} :\$ \scriptsize 
+
+\raggedright
+\vspace{5mm}
+
+\begin{textbox}{terminator}
+
+
+
+
+\green{Pros}
+
+Multiple terminals in the same window with easy and quick navigation/creation/modification shortcuts. Highly recommended while working with ROS.
+
+\yellow{Tips}
+
+Right click on the terminal > Preferences > Profiles.
+\\\\
+Then in \textbf{scrolling} tab:
+Add one more zero to scrollback lines number. Big errors contains more 500 lines
+\\\\
+Add one new \textbf{profile}, then go to \textbf{colors} tab, and select \textit{black on \textbf{white}} as built-in scheme. This profile is now available right clicking in the terminal over the profiles list. It is really needed when working at the sun.
+\\
+
+\underline{\textbf{Shortcuts}}
+
+\keystroke{ctrl} $+$ \keystroke{shift} $+$ \keystroke{o} $\rightarrow$ h\textbf{o}rizontal split
+
+\keystroke{ctrl} $+$ \keystroke{shift} $+$ \keystroke{e} $\rightarrow$ v\textbf{e}rtical split
+
+\keystroke{ctrl} $+$ \keystroke{shift} $+$ \keystroke{w} $\rightarrow$ close current pane
+
+\keystroke{ctrl} $+$ \keystroke{shift} $+$ \keystroke{x} $\rightarrow$ e\textbf{x}pand current pane to full window size
+
+\keystroke{ctrl} $+$ \keystroke{shift} $+$ \keystroke{z} $\rightarrow$ \textbf{z}oom current pane to full window size
+
+\keystroke{ctrl} $+$ \keystroke{shift} $+$ \keystroke{$\leftarrow$}\keystroke{$\uparrow$}\keystroke{$\downarrow$}\keystroke{$\rightarrow$} $\rightarrow$ resize panes
+
+\keystroke{alt} $+$ \keystroke{$\leftarrow$}\keystroke{$\uparrow$}\keystroke{$\downarrow$}\keystroke{$\rightarrow$} $\rightarrow$ move through panes
+
+\begin{wrapfigure}{r}{0.15\textwidth}
+ \vspace{-4mm}\includegraphics[width=0.15\textwidth]{images/icon_terminator.png}
+\end{wrapfigure}
+
+\keystroke{alt} $+$ \keystroke{a} $\rightarrow$ select \textbf{a}ll terminals
+
+\keystroke{alt} $+$ \keystroke{g} $\rightarrow$ select \textbf{g}rouped terminals
+
+\keystroke{alt} $+$ \keystroke{o} $\rightarrow$ select \textbf{o}ne terminal
+
+
+\end{textbox}
+
+
+
+\begin{textbox}{vscode}
+
+
+\green{Pros}
+
+
+\begin{wrapfigure}[2]{R}{0.15\textwidth}
+ \vspace{-10mm}\includegraphics[width=0.13\textwidth]{images/Visual_Studio_Code_1.35_icon.svg.png}
+\end{wrapfigure}
+
+
+Easy installation $\rightarrow$ snap install code --classic
+
+\underline{\textbf{Extensions }}
+\begin{itemize}
+\begin{multicols}{2}
+
+    \item \textbf{C/C++}
+    \item \textbf{Python}
+    \item \textbf{Clang-Format}
+    \item \textbf{Git Lens}
+    \item \textbf{Git Graph}
+    \item \textbf{Markdown PDF}
+    \item \textbf{Remote SSH}
+    \item \textbf{Settings Sync}
+    \item \textbf{Bracket Pair Colorizer}
+    \item \textbf{Coding In The Sun!} 
+\end{multicols}
+\end{itemize}
+
+
+\underline{\textbf{Useful shortcuts}}
+
+(\keystroke{ctrl} $+$ \keystroke{k}) $+$ \keystroke{s} $\rightarrow$ see all \textbf{s}hortcouts (\underline{good place to search})
+
+(\keystroke{ctrl} $+$ \keystroke{k}) $+$ \keystroke{c} $\rightarrow$ \textbf{c}omment selected lines 
+
+(\keystroke{ctrl} $+$ \keystroke{k}) $+$ \keystroke{u} $\rightarrow$ \textbf{u}ncomment selected lines 
+
+\keystroke{ctrl} $+$ \keystroke{d} $\rightarrow$ new cursor on next ocurrence of selected text
+
+
+\end{textbox}
+
+
+\section{Useful stuff}
+
+\begin{textbox}{Shell shortcuts}
+
+\keystroke{ctrl} $+$ \keystroke{a} $\rightarrow$ move cursor to the beginning of the line
+
+\keystroke{ctrl} $+$ \keystroke{e} $\rightarrow$ move cursor to the end of the line
+
+\keystroke{ctrl} $+$ \keystroke{l} $\rightarrow$ clear terminal 
+
+\keystroke{ctrl} $+$ \keystroke{z} $\rightarrow$ suspend current process 
+
+If a process is suspended, it can be resumed typing \textbf{fg} (foreground) or \textbf{bg} (background)
+
+
+\keystroke{ctrl} $+$  \keystroke{$\leftarrow$}\keystroke{$\rightarrow$} $\rightarrow$ move cursor one word forward or backwards
+
+\keystroke{ctrl} $+$ \keystroke{w} $\rightarrow$ cut last word
+
+\keystroke{ctrl} $+$ \keystroke{k} $\rightarrow$ cut command from cursor to the end
+
+\keystroke{ctrl} $+$ \keystroke{y} $\rightarrow$ paste cut string
+
+\keystroke{alt} $+$ \keystroke{t} $\rightarrow$ swap last words
+
+\keystroke{alt} $+$ \keystroke{.} $\rightarrow$ type last argument of last command
+
+\end{textbox}
+
+
+% \begin{tcolorbox}[width=\textbf{}\textwidth,colback={green},title={With rounded corners},colbacktitle=yellow,coltitle=blue]    
+%   \blindtext[1]
+% \end{tcolorbox}    
+
+%--------------------------------------------------------------
+
+\begin{textbox}{Useful commands}
+
+\mycommand{man}{an interface to the on-line reference manuals}
+
+\mycommand{whatis}{ display one-line manual page descriptions}
+
+\mycommand{whereis}{ locate the binary, source, and manual page files for a command}
+
+\mycommand{which}{ locate a command}
+
+\mycommand{whoami}{ print your effective userid}
+
+\mycommand{watch}{  execute a program periodically, showing output fullscreen}
+
+\mycommand{pwd}{ print working directory}
+
+\mycommand{ping}{ send ICMP ECHO\_REQUEST to network hosts}
+
+\mycommand{nmap}{ Network exploration tool and security / port scanner (\textit{sudo apt install nmap})}
+
+\mycommand{ifconfig}{ multiple configuration for network interfaces (\textit{sudo apt install net-tools})}
+
+\mycommand{htop}{ interactive process viewer (\textit{sudo apt install htop})}
+
+\mycommand{head,tail}{  output the first/last part of files}
+
+\mycommand{more,less}{ file perusal filter for crt viewing/the opposite}
+
+\mycommand{history}{ print last executed commands}
+
+\mycommand{find}{ search for files or dirs in a directory hierarchy}
+
+\mycommand{grep}{ print lines matching a pattern}
+
+\mycommand{neofetch}{ a fast, highly customizable system info script (\textit{sudo apt install neofetch})}
+
+\mycommand{apropos}{ tells you commands that approximate the input you give}
+
+\mycommand{gdb}{ the GNU debugger}
+
+\mycommand{cmake-gui, ccmake}{ Graphical/Terminal User Interface for cmake (\textit{sudo apt install ccmake cmake-qt-gui})}
+
+\mycommand{mount/umount}{Attach/unattach filesystem to specific mountpoint}
+
+\mycommand{dmesg}{Print or control the kernel ring buffer}
+
+\end{textbox}
+
+
+
+\begin{textbox}{Shell special characters}
+
+\begin{multicols}{2}
+
+\textbf{\textasciitilde}	Home directory	
+
+\textbf{\#}	Comment
+
+\textbf{\$}	Variable expression
+
+\textbf{\&}	Background job	
+
+\textbf{*}	String wildcard	
+
+\textbf{(cmd...)}	Subshell
+
+\textbf{\textbackslash}	Quote next character
+
+\textbf{[ ]}    Character-set wildcard
+
+\textbf{ \{ cmds... \} }	Command block
+
+\textbf{;}	Shell command separator
+
+\textbf{'...'}	Strong quote
+
+\textbf{"..."}	Weak quote
+
+\textbf{</>}	Input/Output redirect
+
+\textbf{/}	Pathname directory separator
+
+\textbf{?}	Single-character wildcard
+
+\textbf{!}	Pipeline logical NOT
+
+\end{multicols}
+
+\end{textbox}
+
+
+% \section{Example boxes}
+
+
+
+
+
+% \subsection{Code Boxes}
+% %--------------------------------------------------------------
+
+% % first argument: minted programming language name, for example.. css, c, cpp, etc.
+% \begin{codebox}{cpp}{Code box using C++}
+% for (auto element : vector) 
+% {
+%     sum += element;
+% }
+% \end{codebox}
+
+
+% \subsection{Subboxes}
+% %---------------------------------------------
+% \begin{multibox}{2} % number of boxes in a row
+% \begin{subbox}{subbox}{test}
+% \tiny
+
+
+% \bg{alert}{white}{test} 
+% \bggreen{test}\\
+
+% \end{subbox}
+% \begin{subbox}{customcolor}{test}
+% \scriptsize
+
+
+% \bgupper{w3schools}{black}{test}\\
+% \tiny
+% tiny font
+
+% \mycommand{$\lxor$}{XOR}
+% \mycommand{$\lor$}{OR}
+% \end{subbox}
+% \end{multibox}
+
+
+
+
+% %---------------------------------------------
+% \begin{multibox}{2} % number of boxes in a row
+% \begin{subbox}{subbox}{ Infos}
+
+% \bg{alert}{white}{bla}\\
+% \bgupper{w3schools}{black}{XX}\\
+
+% \end{subbox}
+% \begin{subbox}{customcolor}{ Infos}
+
+% \end{subbox}
+% \end{multibox}
+
+
+% \begin{textbox}{Subboxes}
+% %---------------------------------------------
+% \begin{multibox}{2} % number of boxes in a row
+% \begin{subbox}{subbox}{test}
+
+% \red{test} 
+% \bggreen{test}
+% \href{https://latex-ninja.com}{Link}
+% \end{subbox}
+% \begin{subbox}{customcolor}{test}
+% \scriptsize
+
+
+% \bggreen{test}
+% \tiny
+% super small font
+
+% \mycommand{$\land$}{AND $\land$}
+% \mycommand{$\lor$}{OR $\lor$}
+% \end{subbox}
+% \end{multibox}
+
+% %---------------------------------------------
+% \begin{multibox}{2} % number of boxes in a row
+% \begin{subbox}{subbox}{ Info}
+
+% \red{bla}\\
+% \bggreen{XX}\\
+
+% \end{subbox}
+% \begin{subbox}{customcolor}{Info}
+
+% \end{subbox}
+% \end{multibox}
+% \end{textbox}
+
+
+% %--------------------------------------------------------------
+
+% \begin{textbox}{bla}
+
+
+% \bgupper{w3schools}{black}{test}\\
+% \bg{alert}{white}{bla}
+% \begin{enumerate}
+%     \item \emph{bla}: bla.
+%     \item bla.
+% \end{enumerate}
+
+% %---------------------------------------------
+% \begin{multibox}{3} % number of boxes in a row
+% \begin{subbox}{subbox}{test}
+% info
+% \end{subbox}
+% \begin{subbox}{customcolor}{test}
+% $p \to q$
+% \mycommand{CTRL+C}{copy}
+% \end{subbox}
+% \begin{subbox}{subbox}{ Infos}
+% bla \\
+% more text
+% \end{subbox}
+% \end{multibox}
+
+% %---------------------------------------------
+% \begin{multibox}{3} % number of boxes in a row
+% \begin{subbox}{subbox}{ Infos}
+% info
+% \end{subbox}
+% \begin{subbox}{customcolor}{ Infos}
+% $p \to q$
+% \end{subbox}
+% \begin{subbox}{subbox}{ Infos}
+% bla \\
+% more text
+% \end{subbox}
+% \end{multibox}
+
+% \end{textbox}
+
+
+% %---------------------------------------------
+% \AtNextBibliography{\footnotesize}
+% \printbibliography  
+\end{multicols}
+
+\end{document}
